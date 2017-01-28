@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>komidesign.com - Index page</title>
+    <title><?=$page['title'];?></title>
     <?=$included_css;?>
 
 </head>
@@ -23,8 +23,8 @@
 
                     <div id="site-description">
                         <!-- LOGO START BELOW-->
-                        <a id="logo" class="logo" href="./index.php" title="Board index">
-                            <i class="icon-thunder"></i>						<span class="logo-text">Subway</span>
+                        <a id="logo" class="logo" href="<?=base_url()?>" title="Board index">
+                            <img src="<?=$settings['logo']?>" width="34" height="34"> <span class="logo-text"><?=$settings['title']?></span>
                         </a>
                         <!-- LOGO END -->
                         <p class="skiplink"><a href="#start_here">Skip to content</a></p>
@@ -39,51 +39,31 @@
 
                             <ul id="nav-main" role="menubar">
 
-                                <li class="li-home"><a href="./index.php" title="Board index"><i class="icon-home"></i><span>Home</span></a></li>
-
-                                <li class="has-dropdown li-useful"><a href="#"><i class="icon-lifebuoy"></i><span>Quick links</span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="/phpBB3/app.php/help/faq" rel="help" title="Frequently Asked Questions" role="menuitem"><i class="icon-uniE09F"></i>FAQ</a></li>
-
-
-
-                                        <li><a href="./memberlist.php?mode=team" role="menuitem"><i class="icon-uniE0BA"></i>The team</a></li>
-
-
-                                    </ul>
-                                </li>
-
-                                <li class="has-dropdown li-forum"><a href="#"><i class="icon-comments"></i><span>Forum</span></a>
-                                    <ul class="dropdown-menu" role="menu">
-
-
-
-
-
-
-                                        <li><a href="./search.php?search_id=unanswered" role="menuitem"><i class="icon-uniE04C"></i>Unanswered topics</a></li>
-
-                                        <li><a href="./search.php?search_id=active_topics" role="menuitem"><i class="icon-uniE03A"></i>Active topics</a></li>
-
-
-
-
-
-                                    </ul><!-- end dropdown-menu -->
-                                </li>
-
-
+                                <?php
+                                foreach ($menu as $k=>$v){
+                                    echo '<li>
+                                              <a href="'.base_url().$v->link.'" title="'.$v->text.'" style="text-align:center">
+                                                <i class="fa fa-'.$v->icon.'" aria-hidden="true"></i>
+                                                <span>'.mb_strtoupper($v->text).'</span>
+                                              </a>
+                                          </li>';
+                                }
+                                ?>
 
 
                                 <li class="four-cubes">
                                     <ul>
-                                        <li class="small-cube"><a href="#" title="Registration is disabled"><i class="icon-upload"></i></a></li>
+                                        <?php
+                                        if(!getUser()){
+                                            echo'
+                                            <li class="small-cube"><a href="'.base_url().'auth/registration" title="'.translation('registration').'"><i class="fa fa-registered"></i></a></li>
+                                            <li class="small-cube"><a href="'.base_url('auth/singin').'" title="'.translation('sing in').'"><i class="fa fa-sign-in"></i></a></li>
+                                            ';
+                                        }
+                                        else{
 
-                                        <li class="small-cube"><a href="#" title="Login" data-toggle="modal" data-target="#loginmodal" accesskey="x" role="menuitem"><i class="icon-switch"></i><span>Login</span></a></li>
-
-                                        <li class="small-cube hide-max992 guest-link"><a href="#" title="Hello, guest !"><i class="icon-user3"></i></a></li>
-
-                                        <li class="small-cube"><a href="" title="Contact us" role="menuitem"><i class="icon-feather"></i><span>Contact us</span></a></li>
+                                        }
+                                        ?>
 
                                     </ul>
 

@@ -14,35 +14,62 @@
 
 
 
-if(!function_exists('formatHtmlConverters'))
+if(!function_exists('getLang'))
 {
-    function formatHtmlConverters($type,$dataName)
-    {
-        $name = md5('userData_'.$userId);
-        return $name;
-    }
-}
-
-if(!function_exists('getCacheName'))
-{
-    function getCacheName($userId)
-    {
-        $name = md5('userData_'.$userId);
-        return $name;
-    }
-}
-
-if(!function_exists('getUserId'))
-{
-    function getUserId()
+    function getLang()
     {
         $CI =& get_instance();
         $CI->load->library('session');
-        $userId = $CI->session->userdata('user_id');
+        $lang = $CI->session->userdata('lang');
+        return (!$lang)? false : 'ru';
+    }
+}
+
+if(!function_exists('getUser'))
+{
+    function getUser()
+    {
+        $CI =& get_instance();
+        $CI->load->library('session');
+        $userId = $CI->session->userdata('user');
         return (!$userId)? false : $userId;
     }
 }
 
+if(!function_exists('translation'))
+{
+    function translation($key)
+    {
+        $CI =& get_instance();
+        return $CI->db->select('text')
+                                ->from('translation')
+                                ->where('key',$key)
+                                ->where('isEnabled',1)
+                                ->get()
+                                ->row()->text;
+
+    }
+}
+if(!function_exists('makeData')) {
+    function makeData($mustValues, $replaceTitles, $post, &$date, $add = array())
+    {
+        $data = array();
+        foreach ($post as $k => $val) {
+            $value = htmlspecialchars(trim($val['value']), ENT_QUOTES);
+            if (in_array($val['name'], $mustValues) && empty($value)) {
+                $date['error'] .= ', ' . $val['title'];
+            }
+
+
+            if (array_key_exists($val['name'], $replaceTitles)) $val['name'] = $replaceTitles[$val['name']];
+            $data[$val['name']] = $value;
+        }
+        if (mb_strlen($date['error']) > 0) $date['error'] = mb_substr($date['error'], 2) . ' not entered';
+        foreach ($add as $k => $v)
+            $data[$k] = $v;
+        return $data;
+    }
+}
 if(!function_exists('getOponentId'))
 {
     function getOponentId()
@@ -116,59 +143,6 @@ if(!function_exists('restartUser'))
     }
 }
 
-if(!function_exists('getUser'))
-{
-    function getUser($userId=0)
-    {
-		$CI =& get_instance();
-        if($userId==0)
-        {
-            $userId = $CI->session->userdata('user_id');
-            if(!isUser())
-            {
-                return renderNoUser();
-            }
-        }
-
-		$CI->load->driver('cache');
-
-		if ( ! $user = $CI->cache->file->get(getCacheName($userId)))
-		{
-			$CI->load->library('session');
-			$CI->load->model('user_model','user');
-			$user = $CI->user->getUserData($userId);
-            if(isset($user['user_id']) && $user['user_id'])
-            {
-                cacheUser($user);
-            }
-			else
-            {
-               return renderNoUser();
-            }
-		}
-        else
-        {
-            $user = urldecode($user);
-            $user = unserialize($user);
-        }
-		return $user;
-    }
-}
-
-if(!function_exists('user'))
-{
-    function user(&$var)
-    {
-        if(isset($var))
-        {
-            return $var;
-        }
-        else
-        {
-            return '';
-        }
-    }
-}
 
 if(!function_exists('isStartActive'))
 {

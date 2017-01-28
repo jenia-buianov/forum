@@ -124,6 +124,18 @@ class Template
         $data = array_merge($this->_templateData,$data);
 
         if (empty($_POST)){
+            $this->_CI->load->model('settings_model','sm');
+            $this->_CI->load->model('menu_model','mm');
+            $this->_CI->load->model('banner_model','bm');
+            $settings_temp = $this->_CI->sm->get();
+
+            foreach ($settings_temp as $k=>$v){
+                $data['settings'][$v->key] = $v->value;
+            }
+
+            $data['page']['title'] = $this->_CI->sm->getPageTitle();
+            $data['menu'] = $this->_CI->mm->getAllMenu();
+            $data['banner'] = $this->_CI->bm->getAllBanners();
             $this->_CI->load->view('template/header',$data);
             $this->view($this->_folder.'/'.$view, $data);
             $this->_CI->load->view('template/footer',$data);
