@@ -1,0 +1,407 @@
+
+/* Profile & navigation icons */
+
+a.top:before,a.top2:before,.clone > a:before,.small-icon:before,.icon-button:before, .contact-icon:before,.dropdown-select:after,
+a.arrow-left:before,a.arrow-right:before {
+	font-family: 'subway-icons',Open Sans,sans-serif;
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+    margin-right: 7px;
+    font-size: 15px;
+    vertical-align: top;
+    width: auto;
+}
+
+.search-box .icon-button:before {
+	margin-right: 0!important; 
+}
+
+a.arrow-left:before {
+	content: "\e0b6";  
+}
+
+a.arrow-right:before {
+	content: "\e0b5";  
+}
+
+a.top:before,a.top2:before {
+	content: "\e730";  
+}
+
+/* Button Styles
+---------------------------------------- */
+
+.button,a.button2,input.button1,input.button2,input.button3,a.arrow-left,a.arrow-right {
+	cursor: pointer;
+	display: inline-block;
+	line-height: 38px!important;
+	font-size: 13px;
+	border: 1px solid transparent;
+	padding: 0 10px!important;
+	font-family: "Open Sans", "Droid Sans", Verdana, Arial, Helvetica;
+	position: relative;
+	white-space: nowrap;
+	text-decoration: none !important;
+	outline-style: none !important;
+	vertical-align: middle;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.post-buttons .button {	
+    line-height: normal!important;
+    height: 34px;
+    width: 34px;
+    padding: 0;
+    position: relative;
+    text-align: center;
+}
+
+.post-buttons .icon-button:before {	
+    font-size: 13px;
+    position: absolute;
+    top: 8px;
+    left: 0;
+    right: 0;
+}
+
+.dropdown-select:after {	
+	border-left: 1px solid;
+	content: "\e7d6";
+	margin-right: 0;
+    padding-left: 10px;
+}
+
+.dropdown-select:after {	
+    margin-left: 10px;
+}
+
+.buttons, .buttons .button {
+	float: left;
+}
+
+.buttons .button{
+	margin-right: 10px;
+}
+
+button.button i {
+	margin-right: 8px;
+}
+
+.rtl button.button i {
+	margin-right: 0;
+	margin-left: 8px;
+}
+
+button.button-icon-only i {
+    margin: 0;
+}
+
+.dropdown-select {
+	margin-right: 0;
+}
+
+#jumpbox .dropdown-select {
+	margin: 0;
+}
+
+.quickmod{
+	margin-left: 10px;
+}
+
+.dropdown .display-options select{
+	margin-bottom: 10px;
+}
+
+/* Big button images */
+.reply-icon:before, .pmreply-icon:before {
+	content: "\e07f";  
+}
+
+.post-icon:before,.newpm-icon:before {
+	content: "\e0b9";  
+}
+
+.reply-all:before {
+	content: "\e08d";  
+}
+
+.locked-icon:before	{
+	content: "\e0ca";  
+}
+
+.forwardpm-icon:before {
+	content: "\e09c";  
+}									
+
+.tools-icon:before {
+	content: "\e08f";  
+}
+
+.search-icon:before {
+	content: "\e09a";  
+}
+
+.search-adv-icon:before{
+	content: "\e0d5";  
+}
+
+.modtools-icon:before {
+	content: "\e0c3";  
+}
+
+.icon-button:before {
+	float: left;  
+}	
+
+/* Icon images
+---------------------------------------- */
+
+.small-icon.hidden {
+	display: none;
+}
+
+.icon-acp:before{
+	content: "\e0c3";  
+}
+.icon-bookmark:before {
+	content: "\e052"!important;  
+}
+.icon-bump:before {
+	content: "\e0b4";  
+}
+.icon-contact:before {
+	content: "\e0c2";  
+}
+.icon-delete-cookies:before{
+	content: "\e0be";  
+}		
+.icon-download:before {
+	content: "\e0c2";  
+}			
+.icon-faq:before{
+	content: "\e09f";  
+}				
+.icon-logout:before{
+	content: "\e0d2";  
+}				
+.icon-mark:before{
+	content: "\e0bc";  
+}					
+.icon-mcp:before{
+	content: "\e0c2";  
+}					
+.icon-members:before{
+	content: "\e00d";  
+}				
+.icon-notification:before{
+	content: "\e0c2";  
+}			
+.icon-pages:before{
+	content: "\e033";  
+}					
+.icon-pm:before{
+	content: "\e0c2";  
+}					
+.icon-profile:before{
+	content: "\e0c2";  
+}				
+.icon-register:before{
+	content: "\e0c2";  
+}				
+.icon-search:before, .responsive-search a:before{
+	content: "\e0c2";  
+}	
+.icon-search-active:before{
+	content: "\e0c2";  
+}		
+.icon-search-advanced:before{
+	content: "\e0c2";  
+}		
+.icon-search-new:before{
+	content: "\e0c2";  
+}			
+.icon-search-self:before{
+	content: "\e0c2";  
+}			
+.icon-search-unanswered:before{
+	content: "\e0c2";  
+}	
+.icon-search-unread:before{
+	content: "\e0c2";  
+}			
+.icon-sendemail:before{
+	content: "\e0c2";  
+}			
+.icon-subscribe:before{
+	content: "\e0c3";  
+}			
+.icon-team:before{
+	content: "\e0ba";  
+}					
+.icon-ucp:before{
+	content: "\e0c2";  
+}					
+.icon-unsubscribe:before{
+	content: "\e0c3";  
+}			
+
+.small-icon > a {
+	display: inline-block;
+}
+
+/* Poster contact icons
+--------------------------------------*/
+.contact-icons.dropdown-contents {
+	min-width: 0;
+	padding: 0;
+	font-size: 0;
+}
+
+.contact-icon {
+	background-repeat: no-repeat;
+	display: block;
+	height: 16px;
+	width: 16px;
+}
+.contact-icons a {
+	border-bottom: 1px dotted;
+	border-right: 1px dotted;
+	display: block;
+	float: left;
+	padding: 8px;
+}
+
+.contact-icons a:hover {
+	text-decoration: none;
+}
+
+.contact-icons .last-cell {
+	border-right: none;
+}
+
+.contact-icons div:last-child a {
+	border-bottom: none;
+}
+
+.contact-icons div {
+	clear: left;
+}
+
+/* Profile icons */
+.pm-icon:before{
+	content: "\f086";  
+}					
+.email-icon:before{
+	content: "\f0e0";  
+}				
+.jabber-icon:before{
+	content: "\e85d";  
+}						
+.phpbb_icq-icon:before{
+	content: "\e847";  
+}						
+.phpbb_wlm-icon:before{
+	content: "\e76f";  
+}						
+.phpbb_aol-icon:before{
+	content: "\e840";  
+}						
+.phpbb_website-icon:before{
+	content: "\e6c2";  
+}							
+.phpbb_youtube-icon:before{
+	content: "\e773";  
+}							
+.phpbb_facebook-icon:before{
+	content: "\e769";  
+}				
+.phpbb_googleplus-icon:before{
+	content: "\e764";  
+}						
+.phpbb_skype-icon:before{
+	content: "\e79d";  
+}							
+.phpbb_twitter-icon:before{
+	content: "\e76d";  
+}						
+.phpbb_yahoo-icon:before{
+	content: "\e794";  
+}							
+
+/* Post control buttons
+--------------------------------------------- */
+.post-buttons {
+	float: right;
+	list-style: none;
+	margin-top: 2px;
+}
+
+.has-profile .post-buttons {
+	float: none;
+	position: absolute;
+	margin: 0;
+	right: 0;
+	top: 5px;
+}
+
+.post-buttons > li {
+	float: left;
+	margin-right: 5px!important;
+}
+
+.hastouch .post-buttons .icon-button {
+	padding: 2px 8px;
+}
+
+.post-buttons .icon-button span {
+	display: block;
+	height: 0;
+	overflow: hidden;
+	position: absolute;
+	width: 1px;
+}
+
+.post-buttons .icon-button:before {
+	margin: 0;
+}
+
+.quote-icon:before{
+	content: "\e676";  
+}							
+.edit-icon:before{
+	content: "\e0a1";  
+}							
+.warn-icon:before{
+	content: "\e0b8";  
+}							
+.delete-icon:before{
+	content: "\e117";  
+}							
+.report-icon:before{
+	content: "\e0c4";  
+}								
+.info-icon:before{
+	content: "\e0b2";  
+}								
+.button.responsive-menu-link:before{
+	content: "\e7d6";  
+}					
+
+/* Responsive buttons in post body */
+
+.post-buttons .dropdown a {
+	display: block;
+}
+
+.hasjs .postbody .post-buttons {
+	max-width: 40%;
+}
+
+/* Browser-specific tweaks */
+button::-moz-focus-inner {
+	padding: 0;
+	border: 0
+}

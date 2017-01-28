@@ -1,0 +1,173 @@
+/* --------------------------------------------------------------
+	$Icons
+-------------------------------------------------------------- */
+
+/* Global module setup
+--------------------------------*/
+
+/* Renamed version of .fa class for agnostic useage of icon fonts.
+ * Just change the name of the font after the 14/1 to the name of
+ * the font you wish to use.
+ */
+.icon, .button .icon  {
+	display: inline-block;
+  	font-weight: normal;
+  	font-style: normal;
+  	font-variant: normal;
+  	font-family: 'FontAwesome',subway-icons;
+  	font-size: 14px;
+  	line-height: 1;
+  	text-rendering: auto; /* optimizelegibility throws things off #1094 */
+  	-webkit-font-smoothing: antialiased;
+  	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon:before { padding-right: 2px; }
+
+.button .icon:before {
+	padding-right: 0;
+}
+
+/* Icon size classes - Default size is 14px, use these for small variations */
+
+.icon.icon-xl {
+	font-size: 20px;
+}
+
+.icon.icon-lg {
+	font-size: 16px;
+}
+
+.icon.icon-md {
+	font-size: 10px;
+}
+
+.icon.icon-sm {
+	font-size: 8px;
+}
+
+/* icon modifiers */
+.icon-tiny {
+	width: 12px;
+	transform: scale(0.65, 0.75);
+	vertical-align: text-bottom;
+	font-size: 16px;
+}
+
+.arrow-left:hover .icon {
+	margin-left: -5px;
+	margin-right: 5px;
+}
+
+.arrow-right .icon {
+	float: right;
+}
+
+.arrow-right:hover .icon {
+	margin-left: 5px;
+	margin-right: -5px;
+}
+
+.post-buttons .dropdown-contents .icon {
+    float: right;
+    margin-left: 10px;
+}
+
+.alert_close .icon:before {
+	padding: 0;
+    border-radius: 50%;
+    width: 11px;
+    display: block;
+    line-height: .9;
+    height: 12px;
+}
+
+.fa-fw {
+    width: auto;
+}
+
+.lastpost .icon.fa-question:before {
+    content: "\f059";
+}
+.subforum .icon {
+    display: none;
+}
+.action-bar span.caret,.jumpbox span.caret {
+    display: none;
+}
+.row .pagination .icon {
+	display: none;
+}
+.pagination .button > .icon {
+	display: none;
+}
+.left-box .icon,.right-box .icon {
+	display: none;
+}
+
+a.top i,a.top2 i {
+	display: none;
+}
+
+a.arrow-left i,a.arrow-right i {
+	display: none;
+}
+
+.advanced-search-link i{
+	display: none;
+}
+
+.action-bar > .button > .icon:before {
+    font-size: 15px;
+}
+
+.action-bar .button > .icon.fa-pencil:before {
+	content: "\e0b9";  
+}
+
+.action-bar .button > .icon.fa-reply:before {
+    content: "\e07f";
+}
+
+.action-bar .button > .icon.fa-gavel:before{
+    content: "\e0c3";
+}
+
+.button.button-search i:before{
+    content: "\e09a";
+    padding-right: 0;
+}
+
+.button.button-search i{    
+    margin-right: 0!important;
+}
+.button.button-search-end i:before{
+    content: "\e0d5";
+}
+.button.button-search-end i{
+    line-height: 40px !important;
+}
+
+.button > .icon.fa-wrench:before {
+    content: "\e08f";
+}
+
+.post-buttons .button.button-icon-only .icon{
+    top: 8px;
+    position: relative;
+}
+
+/* 2.5 */
+
+p.post-notice i{
+    display: none;
+}
+.button.responsive-menu-link:before{
+  content: ""!important;  
+} 
+
+ul.linklist li.responsive-menu i:before{
+  content: ""!important;  
+} 
+
+

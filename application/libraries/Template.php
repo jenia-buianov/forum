@@ -12,39 +12,21 @@ class Template
 
     public function __construct()
     {
-        $this->_CI = & get_instance();
+        $this->_CI = &get_instance();
 
 
-        $this->addItem('js',base_url().'assets/js/functions.js');
-        $this->addItem('js',base_url().'assets/js/library/uploader/croppic.js');
-        //$this->addItem('js',base_url().'assets/js/library/JqueryNoConflict.js');
-        $this->addItem('css',base_url().'assets/js/library/tinyscrollbar/tinyscrollbar.css');
-        $this->addItem('css',base_url().'assets/styles/jquery-impromptu_NE.css');
-//        $this->addItem('js',base_url().'assets/js/library/impromptu/jquery-impromptu.min.js');
-        $this->addItem('js',base_url().'assets/js/library/impromptu/jquery-impromptu.js');
-        $this->addItem('js',base_url().'assets/js/library/draggabilly.pkgd.min.js');
-
-        $this->addItem('js',base_url().'assets/js/library/dragdealer/dragdealer.js');
-        $this->addItem('css',base_url().'assets/js/library/dragdealer/dragdealer.css');
-        $this->addItem('css',base_url().'assets/js/library/modal/animate.min.css');
-        $this->addItem('css',base_url().'assets/js/library/modal/normalize.min.css');
-        $this->addItem('js',base_url().'assets/js/library/modal/AnimatedModal.js');
-
-        $this->addItem('css',base_url().'assets/js/library/uploader/croppic.css');
-//        $this->addItem('css',base_url().'assets/styles/city_detail.css');
-        $this->addItem('css',base_url().'assets/styles/template.css?v='.time());
-        $this->addItem('css',base_url().'assets/styles/responsive.css');
-//   Бутстрап, удалить после
-       //$this->addItem('css', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
-
-        /* ToolTip */
-        $this->addItem('css',base_url().'assets/js/library/tooltip/opentip.css');
-        $this->addItem('js',base_url().'assets/js/library/tooltip/opentip-prototype.js');
-        $this->addItem('js',base_url().'assets/js/library/socket.io/socket.io.js');
-        $this->addItem('js',base_url().'assets/js/chat.js');
-        $this->addItem('css',base_url().'assets/styles/top-bar.css');
-
+        $this->addItem('css', 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&amp;subset=latin,cyrillic-ext,latin-ext,cyrillic,greek-ext,greek,vietnamese');
+        $this->addItem('css', 'https://fonts.googleapis.com/css?family=Roboto');
+        $this->addItem('css', base_url() . 'assets/font-awesome/css/font-awesome.css');
+        $this->addItem('css', base_url() . 'assets/stylesheet.css');
+        $this->addItem('css', base_url() . 'assets/font-awesome/css/font-awesome.css');
+        $this->addItem('css', base_url() . 'assets/font-awesome/css/font-awesome.css');
+        $this->addItem('js', base_url() . 'assets/jquery-3.1.1.min.js');
+        $this->addItem('js', base_url() . 'assets/core.js');
+        $this->addItem('js', base_url() . 'assets/custom.js');
+        $this->addItem('js', base_url() . 'assets/jquery.countdown.min.js');
     }
+
 
     public function addResponse($key,$data)
     {
@@ -138,46 +120,17 @@ class Template
 
         $this->_templateData['included_css'] = $this->_renderCss();
         $this->_templateData['included_js'] = $this->_renderJs();
-        $data['user'] = $this->_user;
-//        pr($this->_user);
 
         $data = array_merge($this->_templateData,$data);
 
-        //$this->_templateData['other_tool'] = $this->_CI->load->view('_parts/other_tool',$data,true);
-        $this->_templateData['energy_block'] = $this->_CI->load->view('_parts/energy_block',$data,true);
-        //$this->_templateData['gold_block'] = $this->_CI->load->view('_parts/gold_block',$data,true);
-        $data['campaigns'] = $this->_campaings;
-
-        $this->_templateData['campaigns_block'] = '<div id="campaignId"> </div><div id="campaigns_block">'.$this->_CI->load->view('_parts/campaigns_block',$this->_campaings,true).'</div>';
-
-
-        $data = array_merge($this->_templateData,$data);
-
-        $this->_templateData['tools_top'] = $this->_CI->load->view('_parts/top_tools_type'.$this->_toolsType['top'],$data,true);
-        $this->_templateData['tools_left'] = $this->_CI->load->view('_parts/left_tools_type'.$this->_toolsType['left'],$data,true);
-        //$this->_CI->load->model('user_model', 'um');
-        $data['robots'] = $this->_CI->um->getRobots();
-        $data['cards'] = $this->_CI->um->getCards();
-        $this->_templateData['tools_bottom'] = $this->_CI->load->view('_parts/bottom_tools_type'.$this->_toolsType['bottom'],$data,true);
-
-        if($this->_folder != 'city')
-        {
-            $this->_CI->session->unset_userdata('region_id');
-        }
-        $data = array_merge($this->_templateData,$data);
-        if(!isAjax())
-        {
-            $this->_CI->load->view('layout/html/head',$data);
+        if (empty($_POST)){
+            $this->_CI->load->view('template/header',$data);
             $this->view($this->_folder.'/'.$view, $data);
-//            $this->_CI->load->view($this->_folder.'/'.$view,$data);
-            $this->_CI->load->view('layout/html/footer',$data);
+            $this->_CI->load->view('template/footer',$data);
+        }else{
+            $this->view($this->_folder.'/'.$view, $data);
         }
-        else
-        {
-            $response = (isset($data['return']))?$data['return']:array();
-            $response['html'] = $this->view($this->_folder.'/'.$view,$data,TRUE);
-            echo json_encode($response);
-        }
+
 
     }
 

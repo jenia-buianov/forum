@@ -1,0 +1,204 @@
+/* Extensions Custom Styles
+---------------------------------------- */
+
+
+/* phpbb announcements
+----------------------------------------*/
+
+#phpbb_announcement {
+    font-size: 1em;
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 13px 10px;
+    border-radius: 0;
+} 
+
+/* phpbb board rules
+----------------------------------------*/
+.icon-boardrules:before {  
+	content: "\e088";
+}
+
+.content ol {
+    font-size: 1em;
+}
+
+h2.boardrules-header {
+    margin-bottom: 50px;
+    margin-top: 0;
+}
+
+#boardrules-categories {    
+    margin: 84px 0 10px 10px;
+    width: 270px;
+}
+
+.boardrules-header + #main {
+    padding: 10px;
+    background-color: #FFFFFF;
+}
+
+.mini-panel {    
+    border-radius: 0;
+    margin-bottom: 10px;
+    padding: 10px;
+    position: relative;
+}
+
+.mini-panel,.mini-panel a,.mini-panel a:hover {    
+    color: #FFFFFF;
+}
+
+.mini-panel h3 {
+    color: #ffffff;
+    font-family: "Open Sans",sans-serif;
+    margin: 0;
+    padding: 5px 0 15px 32px;
+    border: none;
+}
+
+.rtl .mini-panel h3 {    
+    padding: 5px 32px 15px 0;
+}
+
+.mini-panel h3:before {
+	font-family: "subway-icons";
+	left: 10px;	
+	content: "\e0fd";
+	font-size: 22px;
+	position: absolute;	
+	top: 13px;
+}	
+
+.rtl .mini-panel h3:before {
+    left: auto;
+    right: 10px;    
+    content: "\e0ff";
+}
+
+ul.menu {
+    border: none;    
+    padding-top: 10px;
+    font-size: 13px;
+}
+ul.menu li {
+    border-bottom: none;
+}
+
+@media only screen and (max-width: 768px) {
+		#boardrules-categories, .rtl #boardrules-categories {
+	    float: none;
+	    margin: 0;
+	    margin-bottom: 20px;
+	    text-align: left;
+	    width: 100%;
+    }
+}
+
+/* crizzo aboutus
+----------------------------------------*/
+.panel.aboutus h2:before{
+    content: "";
+}
+.panel.aboutus h2 {
+    font-size: 1.122em !important;
+    padding: 20px 0;
+    margin-left: 0;
+    margin-right: 0;
+    background: transparent;
+    color: #444444;
+}
+/* phpbbmodders holidayflare
+----------------------------------------*/
+@media only screen and (max-width: 992px) {
+    #banner-xmas {
+        display: none;
+    } 
+}   
+/* Advanced BBCode Box 3.1
+----------------------------------------*/
+fieldset.fields1 #bbcode_wizard dd {
+    margin-left: 0;
+}
+#bbcode_wizard {
+    border-radius: 0;
+    box-shadow: none;
+    border: 1px solid #3A3A3A;
+}   
+.dark-skin #bbcode_wizard {
+    background: #2e2e2e;
+}   
+
+/* Last Post Avatar
+----------------------------------------*/
+.lastpostavatar img {
+    border-color: transparent!important;
+    margin-right: 5px;
+    min-width: 33px;
+    position: relative;
+    top: 2px;
+}
+
+.rtl .lastpostavatar img {
+    margin-right: 0;
+    margin-left: 5px;
+    float: right;
+}
+
+/* Shoutbox
+----------------------------------------*/
+#text_shoutbox {
+    border: 1px solid #eeeeee;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    min-height: 42px;
+    padding: 0 10px;
+}  
+
+.dark-skin #text_shoutbox {
+    border: 1px solid #3a3a3a;
+    background-color: #2e2e2e;
+    color: #AAAAAA;
+}  
+
+ul.shoutboxlist li.row dl {
+    padding: 5px 0;
+}
+
+.topiclist.ajaxshoutboxpost {
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.topiclist.ajaxshoutboxpost li.row:hover {
+    background-color: transparent;
+}
+
+.dark-skin .topiclist.ajaxshoutboxpost {
+    border-bottom: 1px solid #3a3a3a;
+}
+
+.ajaxshoutbox_delete input.button2 {
+    line-height: 30px !important;
+    padding: 0 5px !important;
+}
+
+ul.ajaxshoutboxpost dt {
+    width: 95%;
+}
+
+/* Collapsible Categories
+----------------------------------------*/
+a.collapse-btn {
+    margin: -32px 10px 0;
+}
+
+a.collapse-hide,
+a.collapse-show {
+    border-radius: 0;
+}
+
+/* Advanced bbcode box
+----------------------------------------*/
+.abbc3_select {
+    padding: 0;
+}
