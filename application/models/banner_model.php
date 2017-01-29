@@ -17,9 +17,10 @@ class Banner_model extends CI_Model {
 
     function getAllBanners(){
         return
-            $this->db->select('image,link')
+            $this->db->select('image,link,title')
                 ->from('banners')
                 ->where('isEnabled',1)
+                ->order_by('order')
                 ->get()
                 ->result();
     }

@@ -13,12 +13,12 @@ $allowed_symbols = "23456789abcdegikpqsvxyz"; #alphabet without similar symbols 
 $fontsdir = 'fonts';	
 
 # CAPTCHA string length
-$length = mt_rand(5,7); # random 5 or 6 or 7
+$length = mt_rand(3,5); # random 5 or 6 or 7
 //$length = 6;
 
 # CAPTCHA image size (you do not need to change it, this parameters is optimal)
-$width = 160;
-$height = 80;
+$width = 111;
+$height = 64;
 
 # symbol's vertical fluctuation amplitude
 $fluctuation_amplitude = 8;
@@ -34,7 +34,7 @@ $no_spaces = true;
 
 # show credits
 $show_credits = true; # set to false to remove credits line. Credits adds 12 pixels to image height
-$credits = 'www.captcha.ru'; # if empty, HTTP_HOST will be shown
+$credits = ''; # if empty, HTTP_HOST will be shown
 
 # CAPTCHA image colors (RGB, 0-255)
 //$foreground_color = array(0, 0, 0);

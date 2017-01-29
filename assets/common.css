@@ -482,9 +482,8 @@ ol ol ul, ol ul ul, ul ol ul, ul ul ul {
 /* SIDEBAR STYLES */
 
 #body-with-sidebar {
-	width: 100%;
-	float: left;
-	margin-left: -280px;
+	width: calc(100% - 280px);
+	display: block;
 	position: relative;
 }
 

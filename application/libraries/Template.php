@@ -17,11 +17,14 @@ class Template
 
         $this->addItem('css', 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&amp;subset=latin,cyrillic-ext,latin-ext,cyrillic,greek-ext,greek,vietnamese');
         $this->addItem('css', 'https://fonts.googleapis.com/css?family=Roboto');
+        $this->addItem('css', base_url() . 'assets/bootstrap/css/bootstrap.css');
         $this->addItem('css', base_url() . 'assets/font-awesome/css/font-awesome.css');
         $this->addItem('css', base_url() . 'assets/stylesheet.css');
         $this->addItem('css', base_url() . 'assets/font-awesome/css/font-awesome.css');
         $this->addItem('css', base_url() . 'assets/font-awesome/css/font-awesome.css');
         $this->addItem('js', base_url() . 'assets/jquery-3.1.1.min.js');
+        $this->addItem('js', base_url() . 'assets/bootstrap/js/bootstrap.js');
+        $this->addItem('js', base_url() . 'assets/lang_'.getLang().'.js');
         $this->addItem('js', base_url() . 'assets/core.js');
         $this->addItem('js', base_url() . 'assets/custom.js');
         $this->addItem('js', base_url() . 'assets/jquery.countdown.min.js');
@@ -133,9 +136,10 @@ class Template
                 $data['settings'][$v->key] = $v->value;
             }
 
-            $data['page']['title'] = $this->_CI->sm->getPageTitle();
             $data['menu'] = $this->_CI->mm->getAllMenu();
-            $data['banner'] = $this->_CI->bm->getAllBanners();
+            $data['banners'] = $this->_CI->bm->getAllBanners();
+            $data['breadcrumbs'] = breadcrumbs();
+            $data['page']['title'] = getPageTitle($data['breadcrumbs'],$data['settings']['title']);
             $this->_CI->load->view('template/header',$data);
             $this->view($this->_folder.'/'.$view, $data);
             $this->_CI->load->view('template/footer',$data);

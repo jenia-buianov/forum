@@ -24,4 +24,34 @@ class Auth extends CI_Controller {
 
 		$this->template->render('registration');
 	}
+
+	public function reg(){
+
+        if(empty($_POST['values'])){
+            return translation('no entered form');
+        }
+
+
+        $date = array('html'=>'','error'=>'');
+        $data = makeData(array('name','keystring','email','password','password2'),array(),$_POST['values'],$date);
+        if (empty($date['error'])) return json_encode($date);
+        $this->load->helper('email');
+        if(!valid_email($data['email'])) $date['error'] = translation('email error');
+        if (empty($date['error'])) return json_encode($date);
+
+        $this->load->model('user_model','um');
+        if ($this->um->verifyEmail($data['email'])) $date['error'] = translation('email is used');
+        if (empty($date['error'])) return json_encode($date);
+
+        if ($data['password']!==$data['password2']) $date['error'] = translation('passwords are different');
+        if (empty($date['error'])) return json_encode($date);
+
+        
+
+
+
+       return json_encode($date);
+
+    }
+
 }

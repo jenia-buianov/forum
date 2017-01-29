@@ -13,7 +13,7 @@ function Send(el) {
 	if (alerts.length>0)
 	{
 		$('#'+formId+' #alerts').removeClass().addClass('bg-danger');
-		$('#'+formId+' #alerts').html(alerts.substr(2)+" not entered");
+		$('#'+formId+' #alerts').html(alerts.substr(2)+Langs.not_entered);
 		return false;
 	}
 	var url = $(el).attr('action');

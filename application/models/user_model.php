@@ -6,7 +6,7 @@
  * At: 17:36
  */
 
-class Settings_model extends CI_Model {
+class User_model extends CI_Model {
 
 
 
@@ -15,13 +15,14 @@ class Settings_model extends CI_Model {
         parent::__construct();
     }
 
-   function get(){
+   function verifyEmail($mail){
        return
-       $this->db->select('key,value')
-                ->from('settings')
+       $this->db->select('COUNT(`userId`) as count')
+                ->from('users')
                 ->where('isEnabled',1)
+                ->where('email',$mail)
                 ->get()
-                ->result();
+                ->row()->count;
    }
 
 

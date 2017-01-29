@@ -3,3 +3,35 @@
 body{
     font-family:'Roboto', sans-serif;;
 }
+
+.page_content{
+    background: #fff;
+    padding: 0.8em;
+    font-size: 1.2em;
+    min-height: 5em;
+}
+.bg-danger
+{
+    background-color: #D83A29;
+    color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+}
+.bg-success
+{
+    background-color: #00A045;
+    color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+}
+label{
+    font-weight: bold;
+    line-height: 34px;
+}
+.row{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.col-xs-12, .col-sm-12, .col-md-8, .col-lg-10{
+    margin-bottom: 1em;
+}
