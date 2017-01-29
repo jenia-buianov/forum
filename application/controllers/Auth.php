@@ -141,6 +141,11 @@ class Auth extends CI_Controller {
         }
         $query = "INSERT INTO `users`(".mb_substr($rows,0,mb_strlen($rows)-1).")VALUES(".mb_substr($values,0,mb_strlen($values)-1).")";
         $this->db->query($query);
+        $id = $this->db->insert_id();
+        addTranslation('user'.$id,$data['name'],getListLangs());
+        insertIntoMap('user'.$id,1,'users/view/'.$id,6);
+
+
 
         $sendMail = send(host,port,kind,true,mail,mail_password,$settings['title'],$data['email'],$data['name'],$body,translation('registration email title'));
         if (is_bool($sendMail) and $sendMail==true) $date['html'] = translation('registration with success');

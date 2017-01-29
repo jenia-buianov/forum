@@ -51,6 +51,28 @@ if(!function_exists('getLastPage'))
             ->row()->page;
     }
 }
+
+if(!function_exists('insertIntoMap'))
+{
+    function insertIntoMap($title,$key,$url,$parent = 0)
+    {
+        $CI =& get_instance();
+        $CI->db->query("INSERT INTO `map`(`title`,`key`,`url`,`parentId`) VALUES ('".htmlspecialchars($title,ENT_QUOTES)."','".$key."','".htmlspecialchars($url,ENT_QUOTES)."','".$parent."')");
+    }
+}
+
+
+if(!function_exists('addTranslation'))
+{
+    function addTranslation($key,$text,$lang = array('ru'))
+    {
+        $CI =& get_instance();
+        for($k=0;$k<count($lang);$k++){
+            $this->db->query("INSERT INTO `translation`(`key`,`text`,`lang`) VALUES ('".htmlspecialchars($key,ENT_QUOTES)."','".htmlspecialchars($text,ENT_QUOTES)."','".$lang[$k]."')");
+        }
+    }
+}
+
 if(!function_exists('translation'))
 {
     function translation($key)
@@ -102,18 +124,18 @@ if(!function_exists('breadcrumbs')){
                                 ->where('isEnabled',1)
                                 ->where('url',uri_string())
                                 ->get()->row();
-            if($getMap->key) $array[] = array('url'=>uri_string(),'title'=>translation($getMap->title));
-            else $array[] = array('url'=>uri_string(),'title'=>$getMap->title);
+            if($getMap->key) $array[] = array('url'=>base_url(uri_string()),'title'=>translation($getMap->title));
+            else $array[] = array('url'=>base_url(uri_string()),'title'=>$getMap->title);
 
             while ($getMap->parentId)
             {
-                $getMap = $CI->db->select('key,parentId,title')
+                $getMap = $CI->db->select('key,parentId,title,url')
                                     ->from('map')
                                     ->where('isEnabled',1)
                                     ->where('mapId',$getMap->parentId)
                                     ->get()->row();
-                if($getMap->key) $array[] = array('url'=>uri_string(),'title'=>translation($getMap->title));
-                else $array[] = array('url'=>uri_string(),'title'=>$getMap->title);
+                if($getMap->key) $array[] = array('url'=>base_url($getMap->url),'title'=>translation($getMap->title));
+                else $array[] = array('url'=>base_url($getMap->url),'title'=>$getMap->title);
             }
         }
         $array = array_reverse($array);

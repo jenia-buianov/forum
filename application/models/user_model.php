@@ -35,4 +35,23 @@ class User_model extends CI_Model {
                ->row();
    }
 
+   function onlineList(){
+       return $this->db->select('DISTINCT(l.userId), u.name')
+                        ->from('logs as l')
+                        ->join('users as u','l.userId=u.userId')
+                        ->where('l.time >',time()-(15*60+1))
+                        ->where('l.userId !=',0)
+                        ->get()
+                        ->result();
+   }
+
+   function countOnline(){
+       return $this->db->select('COUNT(DISTINCT ip) as count')
+                        ->from('logs')
+                        ->where('time >',time()-(15*60+1))
+                        ->get()
+                        ->row()
+                        ->count;
+   }
+
 }

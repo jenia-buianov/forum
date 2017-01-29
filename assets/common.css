@@ -199,6 +199,14 @@ ol ol ul, ol ul ul, ul ol ul, ul ul ul {
 	padding: 0 3000px; 
 }
 
+@media(max-width: 1023px) {
+	#page-header {
+		margin-left: 0px;
+		margin-right: 0px;
+		padding: 0px;
+	}
+}
+
 #page-body {	
 	clear: both;
 }
@@ -489,6 +497,7 @@ ol ol ul, ol ul ul, ul ol ul, ul ul ul {
 	width: calc(100% - 280px);
 	display: block;
 	position: relative;
+	float: left;
 }
 
 #inner-body-with-sidebar {
@@ -1809,7 +1818,6 @@ input[type="password"] {
     -moz-appearance: none; 
     -webkit-appearance: none; 
     appearance: none;
-    border-radius: 0;
 }
 
 /* Modal Styles
