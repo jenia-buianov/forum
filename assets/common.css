@@ -200,7 +200,6 @@ ol ol ul, ol ul ul, ul ol ul, ul ul ul {
 }
 
 #page-body {	
-	min-height: 450px;
 	clear: both;
 }
 
@@ -342,6 +341,11 @@ ol ol ul, ol ul ul, ul ol ul, ul ul ul {
    font-size: 13px;
    line-height: 1;
 	width: calc(100% - 20px);
+}
+
+#nav-main li.languages{
+	max-width: 125px;
+	max-height: 125px;
 }
 
 #nav-main li.four-cubes { 

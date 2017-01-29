@@ -24,7 +24,6 @@ if(!function_exists('getLang'))
         return (!$lang)? 'ru' : $lang;
     }
 }
-
 if(!function_exists('getUser'))
 {
     function getUser()
@@ -36,17 +35,33 @@ if(!function_exists('getUser'))
     }
 }
 
+if(!function_exists('getLastPage'))
+{
+    function getLastPage()
+    {
+        $CI =& get_instance();
+        if(!getUser()) $user = 0; else $user = getUser();
+        return $CI->db->select('page')
+            ->from('logs')
+            ->where('userId',$user)
+            ->where('ip',$_SERVER['REMOTE_ADDR'])
+            ->order_by('logId','desc')
+            ->limit(1)
+            ->get()
+            ->row()->page;
+    }
+}
 if(!function_exists('translation'))
 {
     function translation($key)
     {
         $CI =& get_instance();
-        return $CI->db->select('text')
+        return htmlspecialchars_decode($CI->db->select('text')
                                 ->from('translation')
                                 ->where('key',$key)
                                 ->where('isEnabled',1)
                                 ->get()
-                                ->row()->text;
+                                ->row()->text);
 
     }
 }
@@ -116,5 +131,38 @@ if(!function_exists('getPageTitle')){
         }
         if(count($crumbs)>1) return mb_substr($title,0,mb_strlen($title)-3).' - '.$titleSite;
         else return $titleSite;
+    }
+}
+
+if(!function_exists('send_email')){
+
+    function send($HOST,$PORT,$TYPE,$AUTH,$MAIL_FROM,$PASSWORD,$TITLE,$MAIL_TO,$NAME,$BODY,$SUBJECT)
+    {
+        $CI =& get_instance();
+        $CI->load->library('PHPMailer');
+        $mail = new PHPMailer;
+        $mail->isSMTP();
+
+        $mail->SMTPDebug = 0;
+        $mail->Debugoutput = 'html';
+        $mail->Host = $HOST;
+        $mail->Port = $PORT;
+        $mail->SMTPSecure = $TYPE;
+        $mail->SMTPAuth = $AUTH;
+        $mail->Username = $MAIL_FROM;
+        $mail->Password = $PASSWORD;
+        $mail->setFrom($MAIL_FROM, $TITLE);
+        $mail->addReplyTo($MAIL_TO, $NAME);
+        $mail->addAddress($MAIL_TO, $NAME);
+        $mail->CharSet = "UTF-8";
+        $mail->Subject = $SUBJECT;
+        $body = mb_convert_encoding($BODY, mb_detect_encoding($BODY), 'UTF-8');
+        $mail->msgHTML($body);
+        $mail->AltBody = 'This is a plain-text message body';
+        if (!$mail->send()) {
+            return "Mailer Error: " . $mail->ErrorInfo;
+        }else{
+            return true;
+        }
     }
 }

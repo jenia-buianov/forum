@@ -31,6 +31,11 @@ function Send(el) {
 				return false;
 			}
 			else {
+				if(data.redirect.length>0){
+					setTimeout(function(){
+						window.location.replace(data.redirect);
+					},data.delay);
+				}
 				$('#'+formId+' #alerts').removeClass().addClass('bg-success');
 				$('#'+formId+' #alerts').html(data.html);
 				$('#'+formId)[0].reset();

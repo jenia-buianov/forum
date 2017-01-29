@@ -521,3 +521,8 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+define('mail','jeniabuianov@gmail.com');
+define('mail_password', '18Qq4541201096');
+define('port', 587);
+define('host', 'smtp.gmail.com');
+define('kind', 'tls');

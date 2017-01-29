@@ -24,5 +24,10 @@ class Settings_model extends CI_Model {
                 ->result();
    }
 
+   function logs(){
+       if(getUser()) $user = getUser(); else $user = 0;
+       $this->db->query("INSERT INTO `logs`(`ip`,`userId`,`page`,`lang`,`time`)VALUES('".$_SERVER['REMOTE_ADDR']."','".$user."','".uri_string()."','".getLang()."','".time()."')");
+   }
+
 
 }

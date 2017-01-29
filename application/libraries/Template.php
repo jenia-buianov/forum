@@ -131,11 +131,11 @@ class Template
             $this->_CI->load->model('menu_model','mm');
             $this->_CI->load->model('banner_model','bm');
             $settings_temp = $this->_CI->sm->get();
+            $this->_CI->sm->logs();
 
             foreach ($settings_temp as $k=>$v){
                 $data['settings'][$v->key] = $v->value;
             }
-
             $data['menu'] = $this->_CI->mm->getAllMenu();
             $data['banners'] = $this->_CI->bm->getAllBanners();
             $data['breadcrumbs'] = breadcrumbs();

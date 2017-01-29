@@ -61,13 +61,18 @@
                                             ';
                                         }
                                         else{
-
+                                            echo'
+                                            <li class="small-cube"><a href="'.base_url('users/view/'.getUser()).'" title="'.translation('my profile').'"><i class="fa fa-user"></i></a></li>
+                                            <li class="small-cube"><a href="'.base_url('auth/logout').'" title="'.translation('logout').'"><i class="fa fa-power-off"></i></a></li>
+                                            ';
                                         }
                                         ?>
 
                                     </ul>
 
                                 </li>
+
+
                             </ul>
 
                         </div>

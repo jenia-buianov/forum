@@ -25,5 +25,14 @@ class User_model extends CI_Model {
                 ->row()->count;
    }
 
+   function getUserByEmail($mail){
+       return
+           $this->db->select('password,userId')
+               ->from('users')
+               ->where('isEnabled',1)
+               ->where('email',$mail)
+               ->get()
+               ->row();
+   }
 
 }

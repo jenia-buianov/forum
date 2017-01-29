@@ -20,6 +20,18 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->template->render('welcome_message');
+	    $this->load->model('category_model','cm');
+        $topCategories = $this->cm->getTopCategories();
+        $categories = array();
+        foreach ($topCategories as $k =>$v){
+            $child = $this->cm->getChildCategories($v->categoryId);
+            $categories[$v->url]['title'] = translation($v->titleKey);
+            foreach ($child as $item =>$value){
+                if(!empty($value->descKey)) $desc = translation($value->descKey); else $desc = '';
+                $categories[$v->url]['child'][] = array('title'=>translation($value->titleKey),'url'=>$value->url,'topics'=>$this->cm->countTopics($value->categoryId),'messages'=>$this->cm->countMessages($value->categoryId),'desc'=>$desc);
+            }
+        }
+        $data['categories'] = $categories;
+		$this->template->render('welcome_message',$data);
 	}
 }

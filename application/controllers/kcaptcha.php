@@ -15,7 +15,8 @@
 # You can remove it, but I would be pleased if you left it. ;)
 
 # See kcaptcha_config.php for customization
-
+error_reporting (E_ALL);
+session_start();
 class KCAPTCHA{
 
 	// generates keystring and image
@@ -44,7 +45,10 @@ class KCAPTCHA{
 				}
 				if(!preg_match('/cp|cb|ck|c6|c9|rn|rm|mm|co|do|cl|db|qp|qb|dp|ww/', $this->keystring)) break;
 			}
-		
+            $_SESSION['captcha_keystring'] = $this->keystring;
+            unset($_COOKIE['captcha_keystring']);
+            setcookie('captcha_keystring', null, -1, '/');
+            setcookie('captcha_keystring',$this->keystring);
 			$font_file=$fonts[mt_rand(0, count($fonts)-1)];
 			$font=imagecreatefrompng($font_file);
 			imagealphablending($font, true);
@@ -235,11 +239,8 @@ class KCAPTCHA{
 	}
 }
 
-session_start();
 
 $captcha = new KCAPTCHA();
 
-if($_REQUEST[session_name()]){
-    $_SESSION['captcha_keystring'] = $captcha->getKeyString();
-}
+
 ?>
