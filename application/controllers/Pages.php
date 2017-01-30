@@ -20,7 +20,7 @@ class Pages extends CI_Controller {
 	 */
 	public function view($id)
 	{
-	    $this->load->model('pages_model','pm');
+	    $this->load->model('Pages_Model','pm');
         $data['pageInfo'] = $this->pm->getPage($id);
 		$this->template->render('view_page',$data);
 	}

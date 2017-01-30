@@ -20,8 +20,8 @@ class Category extends CI_Controller {
 	 */
 	public function view($id)
 	{
-	    $this->load->model('category_model','cm');
-	    $this->load->model('user_model','um');
+	    $this->load->model('Category_Model','cm');
+	    $this->load->model('User_Model','um');
         $cat = $this->cm->getCategoryInfo($id);
         if (!count($cat))
         {
@@ -38,12 +38,12 @@ class Category extends CI_Controller {
                 $categories['category/view/' . $cat->url]['child'][] = array('locked' => $value->locked, 'title' => translation($value->titleKey), 'url' => $value->url, 'topics' => $this->cm->countTopics($value->categoryId), 'messages' => $this->cm->countMessages($value->categoryId), 'desc' => $desc, 'last' => $this->cm->lastPost($value->categoryId), 'unread' => $this->cm->unreadCategory($value->categoryId));
             }
             $data['categories'] = $categories;
+            $this->template->render('category_view',$data);
         }
         else{
             $topics = $this->cm->getTopicsFromCategory($id);
+            print_r($topics);
+ //           $this->template->render('category_topics',$data);
         }
-
-
-		$this->template->render('category_view',$data);
 	}
 }

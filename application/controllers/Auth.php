@@ -52,7 +52,7 @@ class Auth extends CI_Controller {
         if(!valid_email($data['email'])) $date['error'] = translation('email error');
         if (!empty($date['error'])) {        echo json_encode($date);           return;      }
 
-        $this->load->model('user_model','um');
+        $this->load->model('User_Model','um');
         $user = $this->um->getUserByEmail($data['email']);
         if(count($user)==0) $date['error'] = translation('not found email');
         if (!empty($date['error'])) {        echo json_encode($date);           return;      }
@@ -80,7 +80,7 @@ class Auth extends CI_Controller {
         if(!valid_email($data['email'])) $date['error'] = translation('email error');
         if (!empty($date['error'])) {        echo json_encode($date);           return;      }
 
-        $this->load->model('user_model','um');
+        $this->load->model('User_Model','um');
         if ($this->um->verifyEmail($data['email'])) $date['error'] = translation('email is used');
         if (!empty($date['error'])) {        echo json_encode($date);           return;      }
 
@@ -99,7 +99,7 @@ class Auth extends CI_Controller {
         $ignore = array('password2','keystring');
         $data['activationCode'] = mb_substr(md5(md5($data['email'].time()).$data['name']),0,25);
         $data['lang'] = getLang();
-        $this->load->model('settings_model','sm');
+        $this->load->model('Settings_Model','sm');
         $settings_temp = $this->sm->get();
 
         foreach ($settings_temp as $k=>$v){

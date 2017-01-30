@@ -6,7 +6,7 @@
  * At: 17:36
  */
 
-class Banner_model extends CI_Model {
+class Banner_Model extends CI_Model {
 
 
 

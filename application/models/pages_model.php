@@ -6,7 +6,7 @@
  * At: 17:36
  */
 
-class Pages_model extends CI_Model {
+class Pages_Model extends CI_Model {
 
 
 

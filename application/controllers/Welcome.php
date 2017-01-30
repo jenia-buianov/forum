@@ -20,8 +20,8 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-	    $this->load->model('category_model','cm');
-	    $this->load->model('user_model','um');
+	    $this->load->model('Category_Model','cm');
+	    $this->load->model('User_Model','um');
         $topCategories = $this->cm->getTopCategories();
         $categories = array();
         foreach ($topCategories as $k =>$v){

@@ -6,7 +6,7 @@
  * At: 17:36
  */
 
-class Settings_model extends CI_Model {
+class Settings_Model extends CI_Model {
 
 
 

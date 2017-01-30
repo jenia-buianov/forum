@@ -6,7 +6,7 @@
  * At: 17:36
  */
 
-class Category_model extends CI_Model {
+class Category_Model extends CI_Model {
 
 
 
@@ -17,11 +17,13 @@ class Category_model extends CI_Model {
 
     function getTopicsFromCategory($id){
         return
-            $this->db->select('url, image,title ')
+            $this->db->select('messageId, url, image, title, vip')
                 ->from('messages')
                 ->where('isEnabled',1)
                 ->where('parentId',0)
                 ->where('categoryId',$id)
+                ->order_by('vip','desc')
+                ->order_by('datetime')
                 ->get()
                 ->result();
     }

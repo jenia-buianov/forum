@@ -6,7 +6,7 @@
  * At: 17:36
  */
 
-class Menu_model extends CI_Model {
+class Menu_Model extends CI_Model {
 
 
 

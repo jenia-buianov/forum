@@ -127,9 +127,9 @@ class Template
         $data = array_merge($this->_templateData,$data);
 
         if (empty($_POST)){
-            $this->_CI->load->model('settings_model','sm');
-            $this->_CI->load->model('menu_model','mm');
-            $this->_CI->load->model('banner_model','bm');
+            $this->_CI->load->model('Settings_Model','sm');
+            $this->_CI->load->model('Menu_Model','mm');
+            $this->_CI->load->model('Banner_Model','bm');
             $settings_temp = $this->_CI->sm->get();
             $this->_CI->sm->logs();
 
