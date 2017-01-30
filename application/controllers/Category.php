@@ -39,6 +39,9 @@ class Category extends CI_Controller {
             }
             $data['categories'] = $categories;
         }
+        else{
+            $topics = $this->cm->getTopicsFromCategory($id);
+        }
 
 
 		$this->template->render('category_view',$data);

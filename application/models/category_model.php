@@ -15,6 +15,17 @@ class Category_model extends CI_Model {
         parent::__construct();
     }
 
+    function getTopicsFromCategory($id){
+        return
+            $this->db->select('url, image,title ')
+                ->from('messages')
+                ->where('isEnabled',1)
+                ->where('parentId',0)
+                ->where('categoryId',$id)
+                ->get()
+                ->result();
+    }
+
    function getTopCategories(){
        return
        $this->db->select('categoryId, url, titleKey')
