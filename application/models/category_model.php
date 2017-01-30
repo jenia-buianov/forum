@@ -15,17 +15,23 @@ class Category_Model extends CI_Model {
         parent::__construct();
     }
 
+    function topicViews($url){
+        return $this->db->select('COUNT(DISTINCT(`ip`)) as count')
+                        ->from('logs')
+                        ->like('page',$url)
+                        ->get()->row()->count;
+    }
     function getTopicsFromCategory($id){
-        return
-            $this->db->select('messageId, url, image, title, vip')
-                ->from('messages')
-                ->where('isEnabled',1)
-                ->where('parentId',0)
-                ->where('categoryId',$id)
-                ->order_by('vip','desc')
-                ->order_by('datetime')
-                ->get()
-                ->result();
+        return $this->db->select('m.messageId, m.url, m.image, m.title, m.vip, u.name, m.datetime, m.userId, (SELECT COUNT(`messageId`) FROM `messages` WHERE `parentId`=`m`.`messageId` AND `isEnabled`=1) as messages')
+                        ->from('messages as m')
+                        ->join('users as u','u.userId=m.userId')
+                        ->where('m.isEnabled',1)
+                        ->where('m.parentId',0)
+                        ->where('m.categoryId',$id)
+                        ->order_by('m.vip','desc')
+                        ->order_by('m.datetime','desc')
+                        ->get()
+                        ->result();
     }
 
    function getTopCategories(){
@@ -80,6 +86,20 @@ class Category_Model extends CI_Model {
                         ->row()->count;
     }
 
+    function lastTopicPost($topic){
+        return $this->db->select('CASE COUNT(`m`.`messageId`)
+	WHEN 0 THEN (SELECT CONCAT_WS(\'|\', `text`, `datetime`, `userId`, `messageId`) FROM `messages` WHERE `messageId`='.$topic.')
+	ELSE (SELECT CONCAT_WS(\'|\',`ms`.`text`,`ms`.`datetime`,`ms`.`userId`,`ms`.`messageId`) FROM `messages` as `ms`  WHERE `ms`.`parentId`=2 AND `ms`.`isEnabled`=1 ORDER BY `ms`.`datetime` DESC LIMIT 1)
+	END as `text`')
+            ->from('messages as m')
+            ->where('m.isEnabled',1)
+            ->where('m.parentId',$topic)
+            ->limit(1)
+            ->get()
+            ->row()->text;
+
+    }
+
     function lastPost($cat){
         return $this->db->select('m.userId, m.messageId, u.name, m.datetime, m.userId,
 (CASE `m`.`parentId`
@@ -96,9 +116,11 @@ class Category_Model extends CI_Model {
             ->where('m.isEnabled',1)
             ->where('m.categoryId',$cat)
             ->order_by('m.datetime','desc')
+            ->order_by('m.messageId','desc')
             ->limit(1)
             ->get()
             ->row_array();
+
     }
 
     function unreadCategory($cat){

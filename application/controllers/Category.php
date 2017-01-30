@@ -18,11 +18,11 @@ class Category extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function view($id)
+	public function view($url)
 	{
 	    $this->load->model('Category_Model','cm');
 	    $this->load->model('User_Model','um');
-        $cat = $this->cm->getCategoryInfo($id);
+        $cat = $this->cm->getCategoryInfo($url);
         if (!count($cat))
         {
             $data['heading'] = 'NOT FOUND';
@@ -41,9 +41,22 @@ class Category extends CI_Controller {
             $this->template->render('category_view',$data);
         }
         else{
-            $topics = $this->cm->getTopicsFromCategory($id);
-            print_r($topics);
- //           $this->template->render('category_topics',$data);
+
+            $topics = $this->cm->getTopicsFromCategory($cat->categoryId);
+            $data['topics']['title'] = array('title'=>translation($cat->titleKey),'url'=>'category/view/' .$cat->url);
+            foreach($topics as $k=>$v){
+                $last = explode('|',$this->cm->lastTopicPost($v->messageId));
+                if(count($last)>1) $lastArray = array('userId'=>$last[2],'name'=>getUserName($last[2]),'text'=>mb_substr(strip_tags(htmlspecialchars_decode($last[0])),0,25),'date'=>$last[1],'id'=>$last[3]);
+                else $lastArrtay = array();
+                if(!empty($v->image)) $image = $v->image;
+                else $image = '';
+                $categoryTopics['topic/view/' .$v->url] = array('vip'=>$v->vip,'title'=>$v->title,'image'=>$image,'author'=>array('id'=>$v->userId,'name'=>$v->name),'date'=>$v->datetime,'last'=>$lastArray,'messages'=>$v->messages,'views'=>$this->cm->topicViews('topic/view/' .$v->url));
+            }
+            $data['topics']['topics'] = $categoryTopics;
+            //echo"<pre>";
+            //print_r($data['topics']);
+            //exit;
+            $this->template->render('category_topics',$data);
         }
 	}
 }

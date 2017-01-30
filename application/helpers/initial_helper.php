@@ -35,6 +35,16 @@ if(!function_exists('getUser'))
     }
 }
 
+if(!function_exists('getUserName'))
+{
+    function getUserName($id)
+    {
+        $CI =& get_instance();
+        return $CI->db->select('name')->from('users')->where('userId',$id)->where('isEnabled',1)->get()->row()->name;
+
+    }
+}
+
 if(!function_exists('getLastPage'))
 {
     function getLastPage()
@@ -124,6 +134,12 @@ if(!function_exists('breadcrumbs')){
                                 ->where('isEnabled',1)
                                 ->where('url',uri_string())
                                 ->get()->row();
+            if(!count($getMap)){
+                $data['heading'] = 'ERROR 404';
+                $data['message'] = translation('404');
+                echo translation('404');
+                exit(0);
+            }
             if($getMap->key) $array[] = array('url'=>base_url(uri_string()),'title'=>translation($getMap->title));
             else $array[] = array('url'=>base_url(uri_string()),'title'=>$getMap->title);
 

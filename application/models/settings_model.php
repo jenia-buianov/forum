@@ -8,11 +8,18 @@
 
 class Settings_Model extends CI_Model {
 
-
-
+    private $settings = array();
     function __construct()
     {
         parent::__construct();
+        $settings_temp = $this->get();
+        foreach ($settings_temp as $k=>$v){
+            $this->settings[$v->key] = $v->value;
+        }
+    }
+
+    function returnSettings(){
+        return $this->settings;
     }
 
    function get(){
