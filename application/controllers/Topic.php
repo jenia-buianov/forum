@@ -22,8 +22,19 @@ class Topic extends CI_Controller {
 	{
 	    $this->load->model('Topic_Model','tm');
 	    $this->load->model('User_Model','um');
+        $settings = $this->sm->returnSettings();
+
         $data['topic'] = $this->tm->getTopic($url);
         $data['topic']->views = $this->tm->topicViews($url);
-        print_r($data);
+        if(!isset($_GET['page'])) $start = 0;
+        else {
+            $_GET['page'] = (int)$_GET['page'];
+            $start = ($_GET['page'] - 1) * $settings['messagesOnPage'];
+        }
+
+        $data['topic']->messages = $this->tm->getMessages($data['topic']->messageId,$start,$settings['messagesOnPage']);
+
+        $this->template->render('topic_view',$data);
+
 	}
 }

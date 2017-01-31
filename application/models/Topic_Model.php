@@ -32,7 +32,17 @@ class Topic_Model extends CI_Model {
     }
 
     function getMessages($id,$start,$count){
-        return $this->db->select('m.userId, m.text, m.datetime, ')
+        return $this->db->select('m.userId, m.text, m.datetime, m.messageId, m.verifyed,  u.name, u.registration, t.text as group, g.titleKey')
+                        ->join('users as u','m.userId=u.userId')
+                        ->join('groups as g','u.groupId=g.groupId')
+                        ->join('translation as t','g.titleKey=t.key')
+                        ->from('messages as m')
+                        ->where('m.parentId',$id)
+                        ->where('m.isEnabled',1)
+                        ->order_by('m.datetime')
+                        ->limit($count,$start)
+                        ->get()->result();
+
     }
 
 
