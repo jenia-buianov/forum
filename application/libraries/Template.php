@@ -130,7 +130,6 @@ class Template
             $this->_CI->load->model('Menu_Model','mm');
             $this->_CI->load->model('Banner_Model','bm');
             $data['settings'] = $this->_CI->sm->returnSettings();
-            $this->_CI->sm->logs();
 
             $data['menu'] = $this->_CI->mm->getAllMenu();
             $data['banners'] = $this->_CI->bm->getAllBanners();

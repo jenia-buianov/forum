@@ -119,8 +119,8 @@
                         <div class="sheader cube-color-2">
                             <h3><?=$v->title?></h3>
                         </div>
-                        <div class="scontent">
-                            <a target="_blank" title="<?=$v->title?>" href="<?=$v->link?>"><img src="<?=base_url('uploads/banners/'.$v->image)?>" alt="<?=$v->title?>"></a>
+                        <div class="scontent" style="text-align: center">
+                            <a target="_blank" title="<?=$v->title?>" href="<?=$v->link?>"><img src="<?=base_url('uploads/banners/'.$v->image)?>" alt="<?=$v->title?>" style="max-width: 250px"></a>
                         </div>
                     </div>
                     <?php

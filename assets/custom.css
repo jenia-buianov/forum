@@ -11,6 +11,31 @@ body{
     min-height: 5em;
     padding-bottom: 2em;
 }
+
+.topic_content{
+    background-color: white;
+    padding: 0em;
+    font-size:1.2em;
+}
+.topic_content h2{
+    padding-top:5px;
+}
+.top_content h2:before, .top_content h3:before, .top_content h4:before{
+    top: calc(25% - 11px);
+}
+.topic_content .left{
+
+}
+.topic_content text{
+    background-color: white;
+    padding: 1.5em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    margin-top: 0.5em;
+    width:100%;
+    display: block;
+}
+
 .bg-danger
 {
     background-color: #D83A29;
@@ -35,4 +60,27 @@ label{
 }
 .col-xs-12, .col-sm-12, .col-md-8, .col-lg-10{
     margin-bottom: 1em;
+}
+.info{
+    background-color: #81D339;
+    color: #FFFFFF;
+    padding: 1em;
+    text-align: center;
+
+}
+.info a{
+    color:white;
+    font-size:1.3em;
+    margin-bottom: 1em;
+    display: block;
+}
+.message{
+    background-color: white;
+    color:#444444;
+    padding: 1em;
+}
+ .bottom{
+    position: absolute;
+    bottom: 0.5em;
+    left:1em;
 }

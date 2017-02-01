@@ -16,6 +16,7 @@ class Settings_Model extends CI_Model {
         foreach ($settings_temp as $k=>$v){
             $this->settings[$v->key] = $v->value;
         }
+        $this->logs();
     }
 
     function returnSettings(){

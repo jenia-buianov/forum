@@ -25,6 +25,10 @@ class User_Model extends CI_Model {
                 ->row()->count;
    }
 
+   function getStatus($id){
+       return $this->db->select('time')->from('logs')->where('userId',$id)->order_by('logId','desc')->limit(1)->get()->row()->time;
+   }
+
    function getUserByEmail($mail){
        return
            $this->db->select('password,userId')

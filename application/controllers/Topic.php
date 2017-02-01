@@ -26,6 +26,10 @@ class Topic extends CI_Controller {
 
         $data['topic'] = $this->tm->getTopic($url);
         $data['topic']->views = $this->tm->topicViews($url);
+
+        $lastVisit = $this->um->getStatus($data['topic']->userId);
+        if ($lastVisit > time() - 900) $data['topic']->userStatus = 'online';
+        else $data['topic']->userStatus = date('d.m.Y ' . translation('in') . ' H:i', $lastVisit);
         if(!isset($_GET['page'])) $start = 0;
         else {
             $_GET['page'] = (int)$_GET['page'];
