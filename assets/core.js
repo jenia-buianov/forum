@@ -1,6 +1,4 @@
 function Send(el) {
-	event.stopPropagation();
-	event.preventDefault();
 	var valuesArray = {};
 	var alerts = "";
 	var formId = $(el).attr('id');
@@ -21,12 +19,10 @@ function Send(el) {
 	var url = $(el).attr('action');
     $.ajax({
 		dataType: "json",
-		cache: false,
 		url: url,
 		data: {values:valuesArray},
-		processData: false,
 		method: 'POST',
-		success: function (data,textStatus, jqXHR ) {
+		success: function (data) {
 			console.log(data);
 			console.log(formId);
 			if (data.error.length>0){

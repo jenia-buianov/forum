@@ -31,18 +31,22 @@ class Topic_Model extends CI_Model {
                         ->get()->row();
     }
 
-    function getMessages($id,$start,$count){
+    function getMessages($id,$start,$count)
+    {
         return $this->db->select('m.userId, m.text, m.datetime, m.messageId, m.verifyed,  u.name, u.registration, t.text as group, g.titleKey')
-                        ->join('users as u','m.userId=u.userId')
-                        ->join('groups as g','u.groupId=g.groupId')
-                        ->join('translation as t','g.titleKey=t.key')
-                        ->from('messages as m')
-                        ->where('m.parentId',$id)
-                        ->where('m.isEnabled',1)
-                        ->order_by('m.datetime')
-                        ->limit($count,$start)
-                        ->get()->result();
+            ->join('users as u', 'm.userId=u.userId')
+            ->join('groups as g', 'u.groupId=g.groupId')
+            ->join('translation as t', 'g.titleKey=t.key')
+            ->from('messages as m')
+            ->where('m.parentId', $id)
+            ->where('m.isEnabled', 1)
+            ->order_by('m.datetime')
+            ->limit($count, $start)
+            ->get()->result();
+    }
 
+    function getCountResponds($id){
+        return $this->db->select('COUNT(messageId) as count')->from('messages')->where('isEnabled',1)->where('parentId',$id)->get()->row()->count;
     }
 
 

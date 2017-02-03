@@ -71,6 +71,16 @@ if(!function_exists('insertIntoMap'))
     }
 }
 
+if(!function_exists('getListLangs'))
+{
+    function getListLangs()
+    {
+        $CI =& get_instance();
+        return $CI->db->select('shortTitle as abb')->from('languages')->where('isEnabled',1)->get()->result_array();
+
+    }
+}
+
 
 if(!function_exists('addTranslation'))
 {
@@ -78,7 +88,7 @@ if(!function_exists('addTranslation'))
     {
         $CI =& get_instance();
         for($k=0;$k<count($lang);$k++){
-            $this->db->query("INSERT INTO `translation`(`key`,`text`,`lang`) VALUES ('".htmlspecialchars($key,ENT_QUOTES)."','".htmlspecialchars($text,ENT_QUOTES)."','".$lang[$k]."')");
+            $CI->db->query("INSERT INTO `translation`(`key`,`text`,`lang`) VALUES ('".htmlspecialchars($key,ENT_QUOTES)."','".htmlspecialchars($text,ENT_QUOTES)."','".$lang[$k]['abb']."')");
         }
     }
 }
@@ -169,6 +179,25 @@ if(!function_exists('getPageTitle')){
         }
         if(count($crumbs)>1) return mb_substr($title,0,mb_strlen($title)-3).' - '.$titleSite;
         else return $titleSite;
+    }
+}
+
+if(!function_exists('pagination')){
+
+    function pagination($url, $pages, $currentPage){
+        echo'<div class="col-md-12 paginataion_all">';
+        if($currentPage-5 > 10) echo '<a href="'.$url.'?page=1">1</a> ... ';
+        for($k=$currentPage-5;$k<=$currentPage+10;$k++)
+        {
+            if($k>0 and $k<=$pages)
+                if($k==$currentPage) echo ' <a href="'.$url.'?page='.$k.'" class="button active"><b>'.$k.'</b></a> ';
+                else echo ' <a href="'.$url.'?page='.$k.'" class="button">'.$k.'</a> ';
+
+        }
+       if($k<$pages){
+            echo ' ... <a href="'.$url.'?page='.$pages.'" class="button">'.$pages.'</a>';
+        }
+        echo'</div>';
     }
 }
 

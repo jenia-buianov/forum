@@ -13,9 +13,12 @@ body{
 }
 
 .topic_content{
-    background-color: white;
+    background-color: transparent;
     padding: 0em;
     font-size:1.2em;
+}
+.topic_content .col-md-12{
+    background-color: white;
 }
 .topic_content h2{
     padding-top:5px;
@@ -83,4 +86,16 @@ label{
     position: absolute;
     bottom: 0.5em;
     left:1em;
+}
+.paginataion_all{
+    margin-top:1em;
+    text-align: center;
+    background: transparent;
+}
+.topic_content .paginataion_all{
+    background-color: transparent;
+}
+.paginataion_all .active{
+    background-color: #00AFF0;
+    color:white;
 }

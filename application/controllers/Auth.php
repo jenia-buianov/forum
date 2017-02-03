@@ -44,7 +44,6 @@ class Auth extends CI_Controller {
         if(empty($_POST['values'])){
             return translation('no entered form');
         }
-
         $date = array('html'=>'','error'=>'','redirect'=>base_url(''),'delay'=>0);
         $data = makeData(array('name','keystring','email','password','password2'),array(),$_POST['values'],$date);
         if (!empty($date['error'])) {        echo json_encode($date);           return;      }
@@ -71,12 +70,6 @@ class Auth extends CI_Controller {
             return translation('no entered form');
         }
 
-
-        $uploaddir = '../uploads/avatar/'; // . - текущая папка где находится submit.php
-
-        // Создадим папку если её нет
-
-        if( ! is_dir( $uploaddir ) ) mkdir( $uploaddir, 0777 );
 
         $date = array('html'=>'','error'=>'','redirect'=>base_url('auth/singin'),'delay'=>2000);
         $data = makeData(array('name','keystring','email','password','password2'),array(),$_POST['values'],$date);
@@ -105,12 +98,8 @@ class Auth extends CI_Controller {
         $ignore = array('password2','keystring');
         $data['activationCode'] = mb_substr(md5(md5($data['email'].time()).$data['name']),0,25);
         $data['lang'] = getLang();
-        //$_FILES['avatar']['tmp_name']
-        $settings_temp = $this->settings_model->returnSettings();
+        $settings = $this->sm->returnSettings();
 
-        foreach ($settings_temp as $k=>$v){
-            $settings[$v->key] = $v->value;
-        }
 
         $body = '<html>
 

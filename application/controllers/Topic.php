@@ -26,16 +26,20 @@ class Topic extends CI_Controller {
 
         $data['topic'] = $this->tm->getTopic($url);
         $data['topic']->views = $this->tm->topicViews($url);
+        $pages = $this->tm->getCountResponds($data['topic']->messageId);
+        $data['topic']->pages = (int)($pages/$settings['messagesOnPage']);
+        if($pages%$settings['messagesOnPage']) $data['topic']->pages++;
+
 
         $lastVisit = $this->um->getStatus($data['topic']->userId);
         if ($lastVisit > time() - 900) $data['topic']->userStatus = 'online';
         else $data['topic']->userStatus = date('d.m.Y ' . translation('in') . ' H:i', $lastVisit);
-        if(!isset($_GET['page'])) $start = 0;
+        if(!isset($_GET['page'])) {$start = 0; $_GET['page']=1;}
         else {
             $_GET['page'] = (int)$_GET['page'];
             $start = ($_GET['page'] - 1) * $settings['messagesOnPage'];
         }
-
+        $data['topic']->currentPage = (int)$_GET['page'];
         $data['topic']->messages = $this->tm->getMessages($data['topic']->messageId,$start,$settings['messagesOnPage']);
 
         $this->template->render('topic_view',$data);
